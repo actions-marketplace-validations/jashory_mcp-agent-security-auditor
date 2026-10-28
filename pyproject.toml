@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-agent-security-auditor"
+version = "2.0.0"
+description = "Lightweight Fast Pre-Audit Security Scanner & Agent Skill for MCP Servers, Agent Hooks, and Firebase Rules"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [
+  { name = "HM Shihabuddin Jashory (Shihab)", email = "contact@visionflowgroup.com" }
+]
+keywords = ["mcp-security", "claude-code", "antigravity", "bug-bounty", "static-analysis", "firebase-rules", "skill"]
+dependencies = []
+
+[project.scripts]
+mcp-security-auditor = "mcp_security_auditor:main"
+mcp-security-auditor-install = "install:main"
+
+[tool.setuptools]
+py-modules = ["mcp_security_auditor", "install"]

@@ -1,0 +1,36 @@
+# 🔒 AI Agent, MCP & Firebase Pre-Audit Security Scanner (v2.0)
+
+**Lightweight static security auditor and Agent Skill for catching CWE-mapped vulnerabilities in MCP servers, AI agent hooks, and Firebase rules before shipping.**
+
+Built by **HM Shihabuddin Jashory (Shihab)** — [Vision Flow](https://visionflowgroup.com)
+
+---
+
+## ⚡ 1. Install via AI Agent (Claude Code, Antigravity, Cursor, Codex)
+Paste this single prompt into your AI coding agent:
+> **Prompt:** `Clone https://github.com/visionflow-bd/mcp-agent-security-auditor and run "python install.py" to install the security scanner CLI and Agent Skill.`
+
+## 💻 2. Install via CLI (Terminal / Skills CLI / pip)
+```bash
+# Option A: Agent Skills CLI
+npx skills add visionflow-bd/mcp-agent-security-auditor
+
+# Option B: Direct Git Clone + 1-Command Installer
+git clone https://github.com/visionflow-bd/mcp-agent-security-auditor.git
+cd mcp-agent-security-auditor && python install.py
+
+# Option C: Global CLI Tool via pip / uv
+pip install git+https://github.com/visionflow-bd/mcp-agent-security-auditor.git
+mcp-security-auditor /path/to/repo --format markdown
+```
+
+---
+
+## 🔍 7 High-Signal CWE Security Rules Detected
+1. **`AGENT_ENV_SECRET_PERSISTENCE` (`CWE-312`)**: Detects when an agent CLI or config migrator reads resolved `settings.merged` (`${ENV_VAR}` expanded in memory) and writes it back to disk via `setValue()`.
+2. **`FIREBASE_OPEN_DATABASE_RULES` (`CWE-284`)**: Detects public `.read: true` or `.write: true` in Firebase Realtime Database rules.
+3. **`FIRESTORE_OPEN_WILDCARD_RULES` (`CWE-284`)**: Detects unauthenticated `match /{document=**} { allow read, write: if true; }` in `firestore.rules`.
+4. **`MCP_SHELL_COMMAND_INJECTION` (`CWE-78`)**: Detects `subprocess(..., shell=True)` and `child_process.exec()` command injection sinks in MCP tool handlers.
+5. **`MCP_PATH_TRAVERSAL_UNSANITIZED` (`CWE-22`)**: Detects direct path concatenation of tool arguments without canonical `realpath` boundary verification.
+6. **`MCP_UNRESTRICTED_SSRF_FETCH` (`CWE-918`)**: Detects unrestricted URL fetchers in MCP tools that allow cloud metadata (`169.254.169.254`) or localhost probing.
+7. **`AGENT_DYNAMIC_CODE_EVAL` (`CWE-94`)**: Detects `eval()` / `new Function()` on untrusted agent inputs.
