@@ -1,5 +1,16 @@
 # 🔒 AI Agent, MCP & Firebase Pre-Audit Security Scanner (v2.0)
 
+<p align="center">
+  <a href="https://jashory.github.io/mcp-agent-security-auditor/"><img src="https://img.shields.io/badge/Live_Browser_Playground-Try_Now-22C55E?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Browser Playground"/></a>
+  <a href="https://github.com/jashory/mcp-agent-security-auditor/releases/tag/v2.0.0"><img src="https://img.shields.io/badge/Release-v2.0.0-38BDF8?style=for-the-badge&logo=github&logoColor=white" alt="Release v2.0.0"/></a>
+  <a href="https://github.com/jashory/mcp-agent-security-auditor/blob/main/action.yml"><img src="https://img.shields.io/badge/GitHub_Action-Ready-F59E0B?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Action Ready"/></a>
+</p>
+
+<p align="center">
+  <img src="assets/terminal-demo.svg" alt="mcp-agent-security-auditor terminal preview" width="860"/>
+</p>
+
+
 **Lightweight static security auditor and Agent Skill for catching CWE-mapped vulnerabilities in MCP servers, AI agent hooks, and Firebase rules before shipping.**
 
 Built by **HM Shihabuddin Jashory (Shihab)** — [Vision Flow](https://visionflowgroup.com)
@@ -34,3 +45,17 @@ mcp-security-auditor /path/to/repo --format markdown
 5. **`MCP_PATH_TRAVERSAL_UNSANITIZED` (`CWE-22`)**: Detects direct path concatenation of tool arguments without canonical `realpath` boundary verification.
 6. **`MCP_UNRESTRICTED_SSRF_FETCH` (`CWE-918`)**: Detects unrestricted URL fetchers in MCP tools that allow cloud metadata (`169.254.169.254`) or localhost probing.
 7. **`AGENT_DYNAMIC_CODE_EVAL` (`CWE-94`)**: Detects `eval()` / `new Function()` on untrusted agent inputs.
+
+## GitHub Actions Integration (`action.yml`)
+
+Use `mcp-agent-security-auditor` directly inside any CI/CD workflow:
+
+```yaml
+- name: Run mcp-agent-security-auditor
+  uses: jashory/mcp-agent-security-auditor@v2.0.0
+```
+
+## Live Interactive Browser Playground
+
+Test payloads directly in your browser (100% client-side, zero installation required):
+**[https://jashory.github.io/mcp-agent-security-auditor/](https://jashory.github.io/mcp-agent-security-auditor/)**
